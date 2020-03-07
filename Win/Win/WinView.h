@@ -14,18 +14,7 @@
 
 #include <vector>
 
-//static COLORREF colors[] = { RGB( 128, 179, 255 ),RGB( 255, 128, 255 ),RGB( 102, 255, 102 ),RGB( 255, 179, 102 ),RGB( 230, 153, 255 ),RGB( 255, 255, 102 ) };
-
 static COLORREF colors[] = { BLUE, PINK, GREEN, PEACH, PURPLE, YELLOW };
-
-//enum colors{ BLUE=RGB( 128, 179, 255 ), PINK, GREEN, PEACH, PURPLE, YELLOW};
-//enum colors{
-//	1=RGB( 128, 179, 255 ),
-//	2=RGB(255, 128, 255),3=RGB(102, 255, 102),
-//4=RGB(255, 179, 102),
-//5=RGB(230, 153, 255),
-//6=RGB(255, 255, 102)
-//};
 
 class CWinView : public CView
 {
