@@ -1,57 +1,71 @@
 #include "stdafx.h"
 #include "ColorRect.h"
+#include "WinUser.h"
 
 // ColorRect.cpp : implementation file
 //
-
-#include "stdafx.h"
 #include "Win.h"
-#include "ColorRect.h"
-
 
 // ColorRect
 
-CColorRect::CColorRect( CRect * pRect, int penWidth, COLORREF penColor, COLORREF bkgColor )
+CColorRect::CColorRect( CRect * pRect, int penWidth, COLORREF penColor, COLORREF bkgColor ) : CRect(pRect)
 {
-	return;
+	this->m_pPen = new CPen( PS_NULL, penWidth, penColor );
+	this->m_pBrush = new CBrush( bkgColor );
 }
 
-CColorRect::CColorRect( const CRect & )
+CColorRect::CColorRect( const CRect &pRect, int penWidth, COLORREF penColor, COLORREF bkgColor ) : CRect(pRect)
 {
-	return;
+	this->m_pPen = new CPen( PS_SOLID, penWidth, penColor );
+	this->m_pBrush = new CBrush( bkgColor );
 }
 
-CColorRect::CColorRect( const CPoint & LeftTop, const CPoint & RightBottom )
+CColorRect::CColorRect( const CPoint &LeftTop, const CPoint &RightBottom, int penWidth, COLORREF penColor, COLORREF bkgColor ) : CRect(LeftTop, RightBottom)
 {
-	return;
+	this->m_pPen = new CPen( PS_SOLID, penWidth, penColor );
+	this->m_pBrush = new CBrush( bkgColor );
 }
 
-CColorRect::CColorRect( const CPoint &, const CSize & )
+CColorRect::CColorRect( const CPoint &LeftTop, const CSize &size, int penWidth, COLORREF penColor, COLORREF bkgColor ) : CRect(LeftTop, size)
 {
-	return;
+	this->m_pPen = new CPen( PS_SOLID, penWidth, penColor );
+	this->m_pBrush = new CBrush( bkgColor );
 }
 
 CColorRect::~CColorRect()
 {
-	return;
+	delete m_pPen;
+	delete m_pBrush;
 }
 
-void CColorRect::PointRect( CDC * pDC )
+void CColorRect::PaintRect( CDC * pDC, CRect rect )
 {
+	/*pDC->SelectObject( this->m_pPen );
+	pDC->MoveTo( 50, 50 );
+	pDC->LineTo( 50, 300 );*/
+
+	CBrush* pOldBrush = pDC->SelectObject( getRectBrush() );
+	CPen* pOldPen = pDC->SelectObject( getRectPen() );
+	//CRect rect( 50, 50, 400, 400 );
+	//GetClientRect( (HWND)pDC, &rect );
+	pDC->Rectangle( &rect );
+	pDC->SelectObject( pOldBrush );
 }
 
 void CColorRect::setAttr( int penWidth, COLORREF penColor, COLORREF bkgColor )
 {
+	this->m_pPen->CreatePen( PS_SOLID, penWidth, penColor );
+	this->m_pBrush->CreateSolidBrush( bkgColor );
 }
 
-CPen * CColorRect::getRectPen()
+CPen* CColorRect::getRectPen()
 {
-	return nullptr;
+	return this->m_pPen;
 }
 
 CBrush * CColorRect::getRectBrush()
 {
-	return nullptr;
+	return this->m_pBrush;
 }
 
 void CColorRect::initAttr()

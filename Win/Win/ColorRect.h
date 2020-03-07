@@ -9,14 +9,14 @@ class CColorRect: public CRect
 
 public:
 	CColorRect( CRect* pRect = NULL, int penWidth = 0, COLORREF penColor = BLACK, COLORREF bkgColor = BLACK );
-	CColorRect( const CRect& /*...""...*/ );
-	CColorRect( const CPoint& LeftTop, const CPoint& RightBottom /*...""...*/ ); //x, y
-	CColorRect( const CPoint&, const CSize& /*...""...*/ );
+	CColorRect( const CRect& pRect = NULL, int penWidth = 0, COLORREF penColor = BLACK, COLORREF bkgColor = BLACK );
+	CColorRect( const CPoint& LeftTop, const CPoint& RightBottom, int penWidth=0, COLORREF penColor=BLACK, COLORREF bkgColor=BLACK);
+	CColorRect( const CPoint&, const CSize& size, int penWidth = 0, COLORREF penColor = BLACK, COLORREF bkgColor = BLACK );
 
 	~CColorRect();
 
 public:
-	void PointRect( CDC* pDC );
+	void PaintRect( CDC* pDC, CRect rect );
 	void setAttr( int penWidth = 0, COLORREF penColor = BLACK, COLORREF bkgColor = BLACK );
 	CPen* getRectPen();
 	CBrush* getRectBrush();
