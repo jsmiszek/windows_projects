@@ -1,2 +1,2 @@
 # windows_projects
-Projects from classes at UST in Cracow
+Object oriented projects from classes at UST in Cracow
