@@ -55,7 +55,7 @@ void CCoordinates::drawCoordinates( CDC * pDC )
 	}
 	*/
 	////////////////////////////////////////////
-	for( int i = 2; i < lines2.size()-1; i++ )
+	for( int i = 2; i < lines2.size() - 1; i++ )
 	{
 		pDC->MoveTo( lines2[ i ].first.first, lines2[ i ].first.second );
 		pDC->LineTo( lines2[ i ].second.first, lines2[ i ].second.second );

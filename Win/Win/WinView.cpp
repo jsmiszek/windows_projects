@@ -104,9 +104,8 @@ void CWinView::OnDraw(CDC* pDC)
 			s.second.first = 200;
 		}
 
-		if( /*s.first.second < 20*/s.first.second < START_COORD )
+		if( s.first.second < START_COORD )
 		{
-			//s.first.second = 20;
 			s.first.second = START_COORD;
 			s.second.second = START_COORD;;
 		}
@@ -116,12 +115,9 @@ void CWinView::OnDraw(CDC* pDC)
 
 	CCoordinates* coord = new CCoordinates( leftTopPoint, rightBottomPoint, lines );
 
-	//	cs->paintCoordinateSystemWithLines(pDC);
-
-
-	//////////////////////////////////////////////
 	coord->drawCoordinates( pDC );
 
+	////////////////////////////////////////////
 
 	for( int i = 0; i < 6; ++i )
 	{

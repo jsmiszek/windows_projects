@@ -14,8 +14,9 @@
 
 #include <vector>
 
+//static COLORREF colors[] = { RGB( 128, 179, 255 ),RGB( 255, 128, 255 ),RGB( 102, 255, 102 ),RGB( 255, 179, 102 ),RGB( 230, 153, 255 ),RGB( 255, 255, 102 ) };
 
-COLORREF colors[] = { BLUE, PINK, GREEN, PEACH, PURPLE, YELLOW };
+static COLORREF colors[] = { BLUE, PINK, GREEN, PEACH, PURPLE, YELLOW };
 
 //enum colors{ BLUE=RGB( 128, 179, 255 ), PINK, GREEN, PEACH, PURPLE, YELLOW};
 //enum colors{

@@ -9,7 +9,7 @@
 class CCoordinates
 {
 public:
-	CCoordinates( /*CPen* pPen*/std::pair<int, int> leftTop, std::pair<int, int> rightBottom );
+	CCoordinates( std::pair<int, int> leftTop, std::pair<int, int> rightBottom );
 	CCoordinates( std::pair<int, int> leftTop, std::pair<int, int> rightBottom, std::vector<std::pair<std::pair<int, int>, std::pair<int, int>>> cLines2 );
 	
 	~CCoordinates();

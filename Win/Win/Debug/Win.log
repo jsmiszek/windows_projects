@@ -1,5 +1,5 @@
 ﻿  WinView.cpp
-c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\win\win\winview.cpp(129): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\win\win\winview.cpp(125): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(172): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\win\win\winview.cpp(84): note: see reference to function template instantiation 'std::pair<int,int>::pair<int,double,void,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
           with
@@ -13,7 +13,9 @@ c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(172): war
               _Other1=int,
               _Other2=double
           ]
+  Generating Code...
+  Compiling...
   Win.cpp
   Generating Code...
-WinView.obj : error LNK2005: "unsigned long * colors" (?colors@@3PAKA) already defined in Win.obj
-C:\Users\JusMat\Desktop\studia\semestr_6\win\windows_projects\Win\Debug\Win.exe : fatal error LNK1169: one or more multiply defined symbols found
+  Win.vcxproj -> C:\Users\JusMat\Desktop\studia\semestr_6\win\windows_projects\Win\Debug\Win.exe
+  Win.vcxproj -> C:\Users\JusMat\Desktop\studia\semestr_6\win\windows_projects\Win\Debug\Win.pdb (Partial PDB)
