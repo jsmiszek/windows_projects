@@ -1,0 +1,32 @@
+﻿  BubbleSort.cpp
+  Generating Code...
+  Compiling...
+  Sorter.cpp
+  SortView.cpp
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(45): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(116): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(122): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(156): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(158): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(172): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(98): note: see reference to function template instantiation 'std::pair<int,int>::pair<int,double,void,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=int,
+              _Other2=double
+          ]
+  c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(98): note: see reference to function template instantiation 'std::pair<int,int>::pair<int,double,void,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=int,
+              _Other2=double
+          ]
+  Sort.cpp
+  SelectSort.cpp
+  QuickSort.cpp
+  InsertSort.cpp
+  HeapSort.cpp
+  HalfSort.cpp
+  Generating Code...
+  Sort.vcxproj -> C:\Users\JusMat\Desktop\studia\semestr_6\win\windows_projects\Sort\Debug\Sort.exe
+  Sort.vcxproj -> C:\Users\JusMat\Desktop\studia\semestr_6\win\windows_projects\Sort\Debug\Sort.pdb (Partial PDB)
