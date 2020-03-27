@@ -2,6 +2,13 @@
 // SortDoc.h : interface of the CSortDoc class
 //
 
+#include <vector>
+#include "BubbleSort.h"
+#include "HalfSort.h"
+#include "HeapSort.h"
+#include "InsertSort.h"
+#include "QuickSort.h"
+#include "SelectSort.h"
 
 #pragma once
 
@@ -45,4 +52,9 @@ protected:
 	// Helper function that sets search content for a Search Handler
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
+
+private:
+	int *tab;
+public:
+	std::vector<Sorter *> sorts;
 };

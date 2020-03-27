@@ -40,32 +40,42 @@ CSortView::CSortView()
 	//this->quickSortTime = new QuickSortTime;
 	//this->sort = new Sortowanie;
 
-	tab = new int[ TAB_SIZE ];
 
-	srand( time( NULL ) );
+	//this->bubbleSort = new BubbleSort( tab );
+	//this->halfSort = new HalfSort( tab );
+	//this->insertSort = new InsertSort( tab );
+	//this->selectSort = new SelectSort( tab );
 
-	for( int i = 0; i < TAB_SIZE; ++i )
-		tab[ i ] = rand() % 1000;
-
-	this->bubbleSort = new BubbleSort( tab );
-	this->halfSort = new HalfSort( tab );
-	this->heapSort = new HeapSort( tab );
-	this->insertSort = new InsertSort( tab );
-	this->quickSort = new QuickSort( tab );
-	this->selectSort = new SelectSort( tab );
+	//this->heapSort = new HeapSort( tab );
+	//this->quickSort = new QuickSort( tab );
+	
 
 }
+
+/*
+przeniesc rysowanie wykresu do funkcji - nowa metoda w SortView
+korzystajac z wektora lines lines.first.first i lines.first.second do liczb
+wektor lines wsadzic do .h
+metoda do:
+	podzialka
+	nazwa sortowania
+	wywolywanie rectangli
+
+
+*/
+
+
 
 CSortView::~CSortView()
 {
 	delete m_pClientRect;
-	delete tab;
-	delete bubbleSort;
+	//delete sorts;
+	/*delete bubbleSort;
 	delete heapSort;
 	delete insertSort;
 	delete quickSort;
 	delete selectSort;
-	delete halfSort;
+	delete halfSort;*/
 
 }
 
@@ -86,133 +96,28 @@ void CSortView::OnDraw(CDC* pDC)
 	if (!pDoc)
 		return;
 
+	
 	// TODO: add draw code for native data here
-
-	//Sortowanie* sort = new Sortowanie;
-	//sort->rysuj( pDC );
 
 	GetClientRect( m_pClientRect );
 
-	//CRect* rect;
+	
+	drawPlot( pDC );
+	drawRectangle( pDC );
 
-	std::pair<int, int> leftTopPoint( START_COORD, 0.1 * m_pClientRect->Height() );
-	////std::pair<int, int> leftTopPoint( START_COORD, m_pClientRect->bottom );
-
-	std::pair<int, int> rightBottomPoint( ENDX, 0.9 * m_pClientRect->Height() );
-	////std::pair<int, int> rightBottomPoint( ENDX, 0.9 * m_pClientRect->bottom );
-	//CCoordinates coord( leftTopPoint, rightBottomPoint );
-
-	///////////////////////////////////////////
-
-	std::vector<std::pair<std::pair<int, int>, std::pair<int, int>>> lines;
-
-	for( int i = 0; i < SIZE_LINES + 1; i++ )
+	for( int i = 0; i < pDoc->sorts.size(); ++i )
 	{
-
-		std::pair<std::pair<int, int>, std::pair<int, int>> s;
-		s.first.first = START_COORD;
-		//s.first.second = (( m_pClientRect->bottom - m_pClientRect->top) * i / SIZE_LINES);
-		s.first.second = ( 0.8 * m_pClientRect->Height() / SIZE_LINES ) * i
-			+ 0.1 * m_pClientRect->Height();
-
-
-		s.second.first = ENDX; //0.8 * m_pClientRect->right;
-							   //s.second.second = i *(m_pClientRect->bottom - m_pClientRect->top) / SIZE_LINES;
-		s.second.second = ( 0.8 * m_pClientRect->Height() / SIZE_LINES ) * i
-			+ 0.1 * m_pClientRect->Height();
-
-
-		//if( s.first.second < START_COORD )
-		//{
-		//	s.first.second = START_COORD;
-		//	s.second.second = START_COORD;
-		//}
-
-		lines.push_back( s );
+		CString str;
+		str.Format( L"%d", (int) pDoc->sorts[ i ]->GetSortTime() );
+		pDC->TextOutW( 10, 30 * ( i + 1 ), str );
 	}
-	//std::cout << lines.size() << std::endl;
-
-	CCoordinates* coord = new CCoordinates( leftTopPoint, rightBottomPoint, lines );
-
-	coord->drawCoordinates( pDC );
 
 	////////////////////////////////////////////
 
-	//for( int i = 0; i < 6; ++i )
-	//{
-	//	CRect rect( START + i*( RECT_WIDTH + RIGHT_SHIFT ), 0.2 * m_pClientRect->Height(),
-	//		START + i*( RECT_WIDTH + RIGHT_SHIFT ) + RECT_WIDTH, 0.9 * m_pClientRect->Height() );
-	//	CColorRect* rectan = new CColorRect( &rect, 10, RED, colors[ i ] );
-
-	//	rectan->PaintRect( pDC, rect );
-	//}
-
-	for( int i = 0; i < 6; ++i )
-	{
-		POINT leftTop;
-		POINT rightBottom;
-
-		leftTop.x = START + i*( RECT_WIDTH + RIGHT_SHIFT );
-		leftTop.y = 0.2 * m_pClientRect->Height();
-		rightBottom.x = START + i*( RECT_WIDTH + RIGHT_SHIFT ) + RECT_WIDTH;
-		rightBottom.y = 0.9 * m_pClientRect->Height();
-		
-		CRect r1( leftTop, rightBottom );
-		CColorRect rectan( &r1, 1, RED, colors[ i ] );
-
-		rectan.PaintRect( pDC );
-	}
-
+	
 	
 
-	CString str;
-	str.Format( L"%d", (int)halfSort->GetSortTime() );
-	pDC->TextOutW( 10, 30, str );
-
-	CString str1;
-	str1.Format( L"%d", (int) insertSort->GetSortTime() );
-	pDC->TextOutW( 10, 60, str1 );
-
-	CString str2;
-	str2.Format( L"%d", (int) selectSort->GetSortTime() );
-	pDC->TextOutW( 10, 90, str2 );
-
-	CString str3;
-	str3.Format( L"%d", (int) quickSort->GetSortTime() );
-	pDC->TextOutW( 10, 120, str3 );
-
-	CString str4;
-	str4.Format( L"%d", (int) bubbleSort->GetSortTime() );
-	pDC->TextOutW( 10, 150, str4 );
-
-	CString str5;
-	str5.Format( L"%d", (int) heapSort->GetSortTime() );
-	pDC->TextOutW( 10, 180, str5 );
-
-
-	//simpleSortTime = sort->SimpleSorts();
-	//quickSortTime = sort->QuickSorts();
-	////CStrint a = simpleSortTime->halfSortTime;
-	//CString str;
-	//str.Format( L"%d", (int)simpleSortTime->halfSortTime );
-	//pDC->TextOutW( 10, 30, str );
-	//
-	//str.Format( L"%d", (int) simpleSortTime->selectSortTime );
-	//pDC->TextOutW( 10, 60, str );
-
-	//str.Format( L"%d", (int) simpleSortTime->insertSortTime );
-	//pDC->TextOutW( 10, 90, str );
-
-	//str.Format( L"%d", (int) quickSortTime->bubbleSortTime );
-	//pDC->TextOutW( 10, 120, str );
-
-	//str.Format( L"%d", (int) quickSortTime->heapSortTime );
-	//pDC->TextOutW( 10, 150, str );
-
-	//str.Format( L"%d", (int) quickSortTime->quickSortTime );
-	//pDC->TextOutW( 10, 180, str );
-
-	//pDC->TextOutW(20,20,)
+	
 
 }
 
@@ -241,21 +146,73 @@ CSortDoc* CSortView::GetDocument() const // non-debug version is inline
 // CSortView message handlers
 
 
+void CSortView::drawPlot( CDC * pDC )
+{
+
+	std::pair<int, int> leftTopPoint( START_COORD, 0.1 * m_pClientRect->Height() );
+
+	std::pair<int, int> rightBottomPoint( ENDX, 0.9 * m_pClientRect->Height() );
+
+
+	///////////////////////////////////////////
+
+	std::vector<std::pair<std::pair<int, int>, std::pair<int, int>>> lines;
+
+
+	for( int i = 0; i < SIZE_LINES + 1; i++ )
+	{
+
+		std::pair<std::pair<int, int>, std::pair<int, int>> s;
+		s.first.first = START_COORD;
+		s.first.second = ( 0.8 * m_pClientRect->Height() / SIZE_LINES ) * i
+			+ 0.1 * m_pClientRect->Height();
+
+
+		s.second.first = ENDX;
+		s.second.second = ( 0.8 * m_pClientRect->Height() / SIZE_LINES ) * i
+			+ 0.1 * m_pClientRect->Height();
+
+
+		lines.push_back( s );
+	}
+
+	CCoordinates* coord = new CCoordinates( leftTopPoint, rightBottomPoint, lines );
+
+	coord->drawCoordinates( pDC );
+}
+
+void CSortView::drawRectangle(CDC* pDC)
+{
+	for( int i = 0; i < 6; ++i )
+	{
+		POINT leftTop;
+		POINT rightBottom;
+
+		leftTop.x = START + i*( RECT_WIDTH + RIGHT_SHIFT );
+		leftTop.y = 0.2 * m_pClientRect->Height();
+		rightBottom.x = START + i*( RECT_WIDTH + RIGHT_SHIFT ) + RECT_WIDTH;
+		rightBottom.y = 0.9 * m_pClientRect->Height();
+
+		CRect r1( leftTop, rightBottom );
+		CColorRect rectan( &r1, 1, RED, colors[ i ] );
+
+		rectan.PaintRect( pDC );
+	}
+}
+
 void CSortView::OnSimpleSort()
 {
-	//simpleSortTime = sort->SimpleSorts();
-	
+		
 }
 
 
 void CSortView::OnQuickSort()
 {
-	//quickSortTime = sort->QuickSorts();
+	
 }
 
 
 void CSortView::OnAllSort()
 {
-	//simpleSortTime = sort->SimpleSorts();
-	//quickSortTime = sort->QuickSorts();
+	
 }

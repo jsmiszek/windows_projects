@@ -45,9 +45,6 @@
     <ClInclude Include="Coordinates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sortowanie.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Sorter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -90,9 +87,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Coordinates.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sortowanie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sorter.cpp">

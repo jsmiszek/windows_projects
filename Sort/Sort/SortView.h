@@ -6,12 +6,7 @@
 
 #include "SortDoc.h"
 //#include "Sortowanie.h"
-#include "BubbleSort.h"
-#include "HalfSort.h"
-#include "HeapSort.h"
-#include "InsertSort.h"
-#include "QuickSort.h"
-#include "SelectSort.h"
+
 
 #include <vector>
 
@@ -73,15 +68,10 @@ private:
 	//struct QuickSortTime* quickSortTime;
 	//Sortowanie* sort;
 
-	int *tab;
 
-	Sorter* bubbleSort;
-	Sorter* halfSort;
-	Sorter* heapSort;
-	Sorter* insertSort;
-	Sorter* quickSort;
-	Sorter* selectSort;
-
+private:
+	void drawPlot(CDC* pDC);
+	void drawRectangle(CDC* pDC);
 public:
 	afx_msg void OnSimpleSort();
 	afx_msg void OnQuickSort();

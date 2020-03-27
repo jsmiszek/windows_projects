@@ -30,3 +30,8 @@ CString Sorter::GetSortName()
 {
 	return name;
 }
+
+int Sorter::GetType()
+{
+	return type;
+}

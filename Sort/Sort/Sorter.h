@@ -1,5 +1,5 @@
 #pragma once
-#define TAB_SIZE 150000
+#define TAB_SIZE 15000
 
 class Sorter
 {
@@ -12,6 +12,7 @@ public:
 	virtual void Sort() = 0;
 	unsigned int GetSortTime();
 	CString GetSortName();
+	int GetType();
 
 protected:
 	unsigned int sortingTime = -1;

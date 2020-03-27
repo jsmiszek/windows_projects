@@ -29,12 +29,27 @@ END_MESSAGE_MAP()
 
 CSortDoc::CSortDoc()
 {
-	// TODO: add one-time construction code here
+
+	tab = new int[ TAB_SIZE ];
+
+	srand( time( NULL ) );
+
+	for( int i = 0; i < TAB_SIZE; ++i )
+		tab[ i ] = rand() % 1000;
+
+	sorts.push_back( new BubbleSort( tab ) );
+	sorts.push_back( new HalfSort( tab ) );
+	sorts.push_back( new InsertSort( tab ) );
+	sorts.push_back( new SelectSort( tab ) );
+	sorts.push_back( new HeapSort( tab ) );
+	sorts.push_back( new QuickSort( tab ) );
 
 }
 
 CSortDoc::~CSortDoc()
 {
+	delete tab;
+
 }
 
 BOOL CSortDoc::OnNewDocument()
@@ -44,6 +59,7 @@ BOOL CSortDoc::OnNewDocument()
 
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
+	UpdateAllViews( NULL );
 
 	return TRUE;
 }

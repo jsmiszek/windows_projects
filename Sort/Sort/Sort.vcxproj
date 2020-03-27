@@ -198,7 +198,6 @@
     <ClInclude Include="Sort.h" />
     <ClInclude Include="SortDoc.h" />
     <ClInclude Include="Sorter.h" />
-    <ClInclude Include="Sortowanie.h" />
     <ClInclude Include="SortView.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -216,7 +215,6 @@
     <ClCompile Include="Sort.cpp" />
     <ClCompile Include="SortDoc.cpp" />
     <ClCompile Include="Sorter.cpp" />
-    <ClCompile Include="Sortowanie.cpp" />
     <ClCompile Include="SortView.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

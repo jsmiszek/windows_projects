@@ -45,15 +45,7 @@ void CCoordinates::drawCoordinates( CDC * pDC )
 	//rysujemy kreski
 	CPen* m_pPenLines = new CPen( PS_DOT, 1, RGB( 173, 173, 133 ) );
 	pOldPen = pDC->SelectObject( m_pPenLines );
-	/*
-	pDC->MoveTo( this->leftTop.first, this->rightBottom.second );
-	for( int i = 1; i < 10; ++i )
-	{
-	pDC->MoveTo( this->leftTop.first, this->rightBottom.second - i * SHIFT );
-	pDC->LineTo( ENDX, this->rightBottom.second - i * SHIFT );
-
-	}
-	*/
+	
 	////////////////////////////////////////////
 	for( int i = 0; i < lines2.size() - 1; i++ )
 	{
