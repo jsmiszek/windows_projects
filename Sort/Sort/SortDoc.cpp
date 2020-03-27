@@ -22,6 +22,9 @@
 IMPLEMENT_DYNCREATE(CSortDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CSortDoc, CDocument)
+	ON_COMMAND( ID_PROSTE, &CSortDoc::OnSimpleSorts )
+	ON_COMMAND( ID_SZYBKIE, &CSortDoc::OnQuickSorts )
+	ON_COMMAND( ID_WSZYSTKIE, &CSortDoc::OnAllSorts )
 END_MESSAGE_MAP()
 
 
@@ -44,6 +47,7 @@ CSortDoc::CSortDoc()
 	sorts.push_back( new HeapSort( tab ) );
 	sorts.push_back( new QuickSort( tab ) );
 
+	this->status = 3;
 }
 
 CSortDoc::~CSortDoc()
@@ -59,7 +63,9 @@ BOOL CSortDoc::OnNewDocument()
 
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
-	UpdateAllViews( NULL );
+	//UpdateAllViews( NULL );
+
+	countMaxSortTime();
 
 	return TRUE;
 }
@@ -133,6 +139,9 @@ void CSortDoc::SetSearchContent(const CString& value)
 	}
 }
 
+
+
+
 #endif // SHARED_HANDLERS
 
 // CSortDoc diagnostics
@@ -151,3 +160,55 @@ void CSortDoc::Dump(CDumpContext& dc) const
 
 
 // CSortDoc commands
+
+int CSortDoc::getSortStatus()
+{
+	return this->status;
+}
+
+
+unsigned int CSortDoc::getMaxSortTime()
+{
+	if( status == 1 || status == 3 )
+		return maxSimpleSortTime;
+	else
+		return maxQuickSortTime;
+}
+
+void CSortDoc::OnSimpleSorts()
+{
+	status = 1;
+	UpdateAllViews( NULL );
+}
+
+
+void CSortDoc::OnQuickSorts()
+{
+	status = 2;
+	UpdateAllViews( NULL );
+}
+
+
+void CSortDoc::OnAllSorts()
+{
+	status = 3;
+	UpdateAllViews( NULL );
+}
+
+void CSortDoc::countMaxSortTime()
+{
+	unsigned int sortTime;
+	for( Sorter* sort:sorts )
+	{
+		sortTime = sort->GetSortTime();
+
+		if( sort->GetType() == 1 )
+		{
+			if( maxSimpleSortTime < sortTime )
+				maxSimpleSortTime = sortTime;
+		} else {
+			if( maxQuickSortTime < sortTime )
+				maxQuickSortTime = sortTime;
+		}
+	}
+}

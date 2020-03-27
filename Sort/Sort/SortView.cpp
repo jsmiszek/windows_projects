@@ -9,7 +9,7 @@
 #include "Sort.h"
 #endif
 
-#include "SortDoc.h"
+//#include "SortDoc.h"
 #include "SortView.h"
 #include "ColorRect.h"
 #include "Coordinates.h"
@@ -25,9 +25,6 @@
 IMPLEMENT_DYNCREATE(CSortView, CView)
 
 BEGIN_MESSAGE_MAP(CSortView, CView)
-	ON_COMMAND( ID_PROSTE, &CSortView::OnSimpleSort )
-	ON_COMMAND( ID_SZYBKIE, &CSortView::OnQuickSort )
-	ON_COMMAND( ID_WSZYSTKIE, &CSortView::OnAllSort )
 END_MESSAGE_MAP()
 
 // CSortView construction/destruction
@@ -100,10 +97,9 @@ void CSortView::OnDraw(CDC* pDC)
 	// TODO: add draw code for native data here
 
 	GetClientRect( m_pClientRect );
-
 	
 	drawPlot( pDC );
-	drawRectangle( pDC );
+	drawSorts( pDC, pDoc );
 
 	for( int i = 0; i < pDoc->sorts.size(); ++i )
 	{
@@ -181,9 +177,9 @@ void CSortView::drawPlot( CDC * pDC )
 	coord->drawCoordinates( pDC );
 }
 
-void CSortView::drawRectangle(CDC* pDC)
+void CSortView::drawRectangle(CDC* pDC, int num)
 {
-	for( int i = 0; i < 6; ++i )
+	for( int i = 0; i < num; ++i )
 	{
 		POINT leftTop;
 		POINT rightBottom;
@@ -200,19 +196,22 @@ void CSortView::drawRectangle(CDC* pDC)
 	}
 }
 
-void CSortView::OnSimpleSort()
+void CSortView::drawSorts( CDC* pDC, CSortDoc* pDoc )
 {
-		
+	int status = pDoc->getSortStatus();
+	if( status == 3 )			// wszystkie
+	{
+		drawRectangle( pDC, 6 );
+	}
+	else if( status == 2 )		// szybkie
+	{
+		drawRectangle( pDC, 2 );
+	}
+	else if( status == 1 )		//proste
+	{
+		drawRectangle( pDC, 4 );
+	}
 }
 
 
-void CSortView::OnQuickSort()
-{
-	
-}
 
-
-void CSortView::OnAllSort()
-{
-	
-}

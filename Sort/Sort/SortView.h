@@ -71,11 +71,11 @@ private:
 
 private:
 	void drawPlot(CDC* pDC);
-	void drawRectangle(CDC* pDC);
-public:
-	afx_msg void OnSimpleSort();
-	afx_msg void OnQuickSort();
-	afx_msg void OnAllSort();
+	void drawRectangle(CDC* pDC, int num);
+private:
+	void drawSorts( CDC* pDC, CSortDoc* pDoc );
+	void drawTime();
+
 };
 
 #ifndef _DEBUG  // debug version in SortView.cpp

@@ -55,6 +55,19 @@ protected:
 
 private:
 	int *tab;
+	int status; //1- proste, 2-szybkie, 3-all
+	unsigned int maxSimpleSortTime;
+	unsigned int maxQuickSortTime;
 public:
 	std::vector<Sorter *> sorts;
+
+public:
+	int getSortStatus();
+	unsigned int getMaxSortTime();
+	afx_msg void OnSimpleSorts();
+	afx_msg void OnQuickSorts();
+	afx_msg void OnAllSorts();
+
+private:
+	void countMaxSortTime();
 };
