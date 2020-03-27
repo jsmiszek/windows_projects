@@ -20,9 +20,8 @@
 
 #define RIGHT_SHIFT 30
 #define RECT_WIDTH 50 
-#define START 100
-#define START_COORD 50
-#define ENDY 500
+#define START 120
+#define START_COORD 80
 
 #define SIZE_LINES 20
 
@@ -63,6 +62,8 @@ protected:
 
 private:
 	CRect* m_pClientRect;
+	CFont* m_pFontNumbers;
+	CFont* m_pFontNames;
 
 	//struct SimpleSortTime* simpleSortTime;
 	//struct QuickSortTime* quickSortTime;
@@ -74,7 +75,7 @@ private:
 	void drawRectangle(CDC* pDC, int num);
 private:
 	void drawSorts( CDC* pDC, CSortDoc* pDoc );
-	void drawTime();
+	void drawTime(CDC* pDC, CSortDoc* pDoc );
 
 };
 

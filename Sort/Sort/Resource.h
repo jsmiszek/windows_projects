@@ -4,12 +4,16 @@
 //
 #define IDD_ABOUTBOX                    100
 #define IDP_OLE_INIT_FAILED             100
+#define IDS_BUBBLE_SORT                 101
+#define IDS_INSERT_SORT                 102
+#define IDS_HALF_SORT                   103
+#define IDS_SELECT_SORT                 104
+#define IDS_QUICK_SORT                  105
 #define IDR_MAINFRAME                   128
 #define IDR_SortTYPE                    130
 #define ID_PROSTE                       32771
 #define ID_WSZYSTKIE                    32773
 #define ID_SZYBKIE                      32774
-
 
 // Next default values for new objects
 // 

@@ -232,6 +232,11 @@ END
 STRINGTABLE
 BEGIN
     IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
+    IDS_BUBBLE_SORT         "Bubble"
+    IDS_INSERT_SORT         "Insertion"
+    IDS_HALF_SORT           "Half"
+    IDS_SELECT_SORT         "Selection"
+    IDS_QUICK_SORT          "Quick"
 END
 
 STRINGTABLE

@@ -31,21 +31,45 @@ END_MESSAGE_MAP()
 
 CSortView::CSortView()
 {
-	// TODO: add construction code here
 	this->m_pClientRect = new CRect;
-	//this->simpleSortTime = new SimpleSortTime;
-	//this->quickSortTime = new QuickSortTime;
-	//this->sort = new Sortowanie;
-
-
-	//this->bubbleSort = new BubbleSort( tab );
-	//this->halfSort = new HalfSort( tab );
-	//this->insertSort = new InsertSort( tab );
-	//this->selectSort = new SelectSort( tab );
-
-	//this->heapSort = new HeapSort( tab );
-	//this->quickSort = new QuickSort( tab );
 	
+	m_pFontNumbers = new CFont;
+	LOGFONT logFontNumbers;
+	memset( &logFontNumbers, 0, sizeof( logFontNumbers ) );
+
+	CString sFont( "Arial" );
+
+	lstrcpy( logFontNumbers.lfFaceName, sFont );
+
+	logFontNumbers.lfCharSet = DEFAULT_CHARSET;
+	logFontNumbers.lfWeight = FW_NORMAL;
+	logFontNumbers.lfHeight = -24;
+	logFontNumbers.lfWidth = -10;
+
+
+	if( !m_pFontNumbers->CreateFontIndirect( &logFontNumbers ) )
+	{
+		TRACE0( "Could not create font for the trends." );
+	}
+	// ---------------------------------------------------------
+	m_pFontNames = new CFont;
+	LOGFONT logFontNames;
+	memset( &logFontNames, 0, sizeof( logFontNumbers ) );
+
+	CString sFont1( "Georgia" );
+
+	lstrcpy( logFontNames.lfFaceName, sFont );
+
+	logFontNames.lfCharSet = DEFAULT_CHARSET;
+	logFontNames.lfWeight = FW_NORMAL;
+	logFontNames.lfHeight = -24;
+	logFontNames.lfWidth = -10;
+
+
+	if( !m_pFontNames->CreateFontIndirect( &logFontNames ) )
+	{
+		TRACE0( "Could not create font for the trends." );
+	}
 
 }
 
@@ -66,6 +90,8 @@ metoda do:
 CSortView::~CSortView()
 {
 	delete m_pClientRect;
+	delete m_pFontNumbers;
+	delete m_pFontNames;
 	//delete sorts;
 	/*delete bubbleSort;
 	delete heapSort;
@@ -100,14 +126,15 @@ void CSortView::OnDraw(CDC* pDC)
 	
 	drawPlot( pDC );
 	drawSorts( pDC, pDoc );
-
+	drawTime( pDC, pDoc );
+	/*
 	for( int i = 0; i < pDoc->sorts.size(); ++i )
 	{
 		CString str;
 		str.Format( L"%d", (int) pDoc->sorts[ i ]->GetSortTime() );
 		pDC->TextOutW( 10, 30 * ( i + 1 ), str );
 	}
-
+	*/
 	////////////////////////////////////////////
 
 	
@@ -212,6 +239,32 @@ void CSortView::drawSorts( CDC* pDC, CSortDoc* pDoc )
 		drawRectangle( pDC, 4 );
 	}
 }
+
+void CSortView::drawTime( CDC* pDC, CSortDoc* pDoc )
+{
+	int status = pDoc->getSortStatus();
+
+	std::vector<std::pair<int, int>> points;
+
+	for( int i = 0; i < SIZE_LINES + 1; ++i )
+	{
+		std::pair<int, int> s;
+		s.first = START_COORD - 40;
+		s.second = ( 0.8 * m_pClientRect->Height() / SIZE_LINES ) * i
+			+ 0.1 * m_pClientRect->Height();
+
+		points.push_back( s );
+
+		
+	}
+
+
+	CString str = L"1024";
+	pDC->TextOutW( points[0].first, points[0].second, str );
+
+}
+
+
 
 
 

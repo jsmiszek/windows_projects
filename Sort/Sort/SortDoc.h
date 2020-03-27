@@ -70,4 +70,5 @@ public:
 
 private:
 	void countMaxSortTime();
+	unsigned int roundMaxSortTime( unsigned int sortTime );
 };
