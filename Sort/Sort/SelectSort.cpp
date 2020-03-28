@@ -5,7 +5,7 @@
 SelectSort::SelectSort(int* t) :Sorter(t)
 {
 	type = 1;
-	name = "Select";
+	name.LoadStringW( IDS_SELECT_SORT );
 }
 
 

@@ -43,27 +43,27 @@ CSortView::CSortView()
 
 	logFontNumbers.lfCharSet = DEFAULT_CHARSET;
 	logFontNumbers.lfWeight = FW_NORMAL;
-	logFontNumbers.lfHeight = -24;
-	logFontNumbers.lfWidth = -10;
-
+	logFontNumbers.lfHeight = -12;
+	logFontNumbers.lfWidth = -5;
 
 	if( !m_pFontNumbers->CreateFontIndirect( &logFontNumbers ) )
 	{
 		TRACE0( "Could not create font for the trends." );
 	}
 	// ---------------------------------------------------------
+
 	m_pFontNames = new CFont;
 	LOGFONT logFontNames;
 	memset( &logFontNames, 0, sizeof( logFontNumbers ) );
 
 	CString sFont1( "Georgia" );
 
-	lstrcpy( logFontNames.lfFaceName, sFont );
+	lstrcpy( logFontNames.lfFaceName, sFont1 );
 
 	logFontNames.lfCharSet = DEFAULT_CHARSET;
 	logFontNames.lfWeight = FW_NORMAL;
-	logFontNames.lfHeight = -24;
-	logFontNames.lfWidth = -10;
+	logFontNames.lfHeight = -12;
+	logFontNames.lfWidth = -6;
 
 
 	if( !m_pFontNames->CreateFontIndirect( &logFontNames ) )
@@ -73,40 +73,16 @@ CSortView::CSortView()
 
 }
 
-/*
-przeniesc rysowanie wykresu do funkcji - nowa metoda w SortView
-korzystajac z wektora lines lines.first.first i lines.first.second do liczb
-wektor lines wsadzic do .h
-metoda do:
-	podzialka
-	nazwa sortowania
-	wywolywanie rectangli
-
-
-*/
-
-
 
 CSortView::~CSortView()
 {
 	delete m_pClientRect;
 	delete m_pFontNumbers;
 	delete m_pFontNames;
-	//delete sorts;
-	/*delete bubbleSort;
-	delete heapSort;
-	delete insertSort;
-	delete quickSort;
-	delete selectSort;
-	delete halfSort;*/
-
 }
 
 BOOL CSortView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: Modify the Window class or styles here by modifying
-	//  the CREATESTRUCT cs
-
 	return CView::PreCreateWindow(cs);
 }
 
@@ -119,29 +95,13 @@ void CSortView::OnDraw(CDC* pDC)
 	if (!pDoc)
 		return;
 
-	
 	// TODO: add draw code for native data here
 
 	GetClientRect( m_pClientRect );
 	
 	drawPlot( pDC );
 	drawSorts( pDC, pDoc );
-	drawTime( pDC, pDoc );
-	/*
-	for( int i = 0; i < pDoc->sorts.size(); ++i )
-	{
-		CString str;
-		str.Format( L"%d", (int) pDoc->sorts[ i ]->GetSortTime() );
-		pDC->TextOutW( 10, 30 * ( i + 1 ), str );
-	}
-	*/
-	////////////////////////////////////////////
-
-	
-	
-
-	
-
+	drawScale( pDC, pDoc );
 }
 
 
@@ -204,64 +164,108 @@ void CSortView::drawPlot( CDC * pDC )
 	coord->drawCoordinates( pDC );
 }
 
-void CSortView::drawRectangle(CDC* pDC, int num)
+void CSortView::drawSorts(CDC* pDC, CSortDoc* pDoc)
 {
-	for( int i = 0; i < num; ++i )
+	int status = pDoc->getSortStatus();
+	unsigned int time = 0;
+	CString name;
+
+	CFont* pOldFont = pDC->SelectObject( m_pFontNames );
+
+	int i = 0;
+	for( Sorter* sort : pDoc->sorts )
 	{
+		if( status == 1 )
+		{
+			if( sort->GetType() == 1 )
+			{
+				time = sort->GetSortTime();
+				name = sort->GetSortName();
+			}
+			else
+				continue;
+		}
+		else if( status == 2 )
+		{
+			if( sort->GetType() == 2 )
+			{
+				time = sort->GetSortTime();
+				name = sort->GetSortName();
+			}
+			else
+				continue;
+		}
+		else if( status == 3 )
+		{
+			time = sort->GetSortTime();
+			name = sort->GetSortName();
+		}
+		CString str;
+		str.Format( L"%d", sort->GetSortTime() );
+		pDC->TextOutW( 600, 30*(i+1), str );
+
 		POINT leftTop;
 		POINT rightBottom;
 
-		leftTop.x = START + i*( RECT_WIDTH + RIGHT_SHIFT );
-		leftTop.y = 0.2 * m_pClientRect->Height();
+		leftTop.x = START + i*( RECT_WIDTH + RIGHT_SHIFT ); 
+		//leftTop.y = ( 0.2 * m_pClientRect->Height() );// *( time / pDoc->getMaxSortTime() ); //tu wsadzic time
+		//leftTop.y =  (0.8*m_pClientRect->Height() )
+		leftTop.y = 0.8*m_pClientRect->Height() * (double)( 1 - (double)time / (double)pDoc->getMaxSortTime() ) +0.1*m_pClientRect->Height();
 		rightBottom.x = START + i*( RECT_WIDTH + RIGHT_SHIFT ) + RECT_WIDTH;
 		rightBottom.y = 0.9 * m_pClientRect->Height();
 
 		CRect r1( leftTop, rightBottom );
 		CColorRect rectan( &r1, 1, RED, colors[ i ] );
-
 		rectan.PaintRect( pDC );
+
+		
+		pDC->TextOutW( rightBottom.x - RECT_WIDTH, rightBottom.y + 8, name );
+		
+		i++;
 	}
+	pDC->SelectObject( pOldFont );
 }
 
-void CSortView::drawSorts( CDC* pDC, CSortDoc* pDoc )
-{
-	int status = pDoc->getSortStatus();
-	if( status == 3 )			// wszystkie
-	{
-		drawRectangle( pDC, 6 );
-	}
-	else if( status == 2 )		// szybkie
-	{
-		drawRectangle( pDC, 2 );
-	}
-	else if( status == 1 )		//proste
-	{
-		drawRectangle( pDC, 4 );
-	}
-}
 
-void CSortView::drawTime( CDC* pDC, CSortDoc* pDoc )
+void CSortView::drawScale( CDC* pDC, CSortDoc* pDoc )
 {
-	int status = pDoc->getSortStatus();
+	CFont* pOldFont = pDC->SelectObject( m_pFontNumbers );
 
 	std::vector<std::pair<int, int>> points;
+	std::vector<unsigned int> times = pDoc->getTimeVector();
 
 	for( int i = 0; i < SIZE_LINES + 1; ++i )
 	{
 		std::pair<int, int> s;
 		s.first = START_COORD - 40;
 		s.second = ( 0.8 * m_pClientRect->Height() / SIZE_LINES ) * i
-			+ 0.1 * m_pClientRect->Height();
+			+ 0.1 * m_pClientRect->Height() - 7;
 
 		points.push_back( s );
 
-		
+		CString str;
+		str.Format( L"%d", (int) times[ i ] );
+		pDC->TextOutW( points[ i ].first, points[ i ].second, str );
 	}
 
+	pDC->SelectObject( pOldFont );
 
-	CString str = L"1024";
-	pDC->TextOutW( points[0].first, points[0].second, str );
-
+	/*
+	for( int i = 0; i < SIZE_LINES + 1; ++i )
+	{
+		CString str;
+		str.Format( L"%d", (int) times[ i ] );
+		pDC->TextOutW( points[ i ].first, points[ i ].second, str );
+	}/*
+	str = L"0";
+	pDC->TextOutW( points[ 20 ].first, points[ 20 ].second, L"0" );
+	pDC->SelectObject( pOldFont );
+	/*
+	CFont* pOldFont2 = pDC->SelectObject( m_pFontNames );
+	//COLORREF oldColor2 = pDC->SetTextColor( RGB( 0, 0, 0 ) );
+	pDC->TextOutW( points[ 1 ].first, points[ 1 ].second, pDoc->sorts[ 2 ]->GetSortName() );
+	pDC->SelectObject( pOldFont2 );
+	*/
 }
 
 

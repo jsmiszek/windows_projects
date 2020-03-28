@@ -5,7 +5,7 @@
 BubbleSort::BubbleSort(int *tab) : Sorter(tab)
 {
 	type = 1;
-	name = "Bubble";
+	name.LoadStringW( IDS_BUBBLE_SORT );
 }
 
 

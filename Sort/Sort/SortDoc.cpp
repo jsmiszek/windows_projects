@@ -10,7 +10,6 @@
 #endif
 
 #include "SortDoc.h"
-
 #include <propkey.h>
 
 #ifdef _DEBUG
@@ -27,27 +26,32 @@ BEGIN_MESSAGE_MAP(CSortDoc, CDocument)
 	ON_COMMAND( ID_WSZYSTKIE, &CSortDoc::OnAllSorts )
 END_MESSAGE_MAP()
 
-
 // CSortDoc construction/destruction
 
 CSortDoc::CSortDoc()
 {
 
 	tab = new int[ TAB_SIZE ];
-
 	srand( time( NULL ) );
-
 	for( int i = 0; i < TAB_SIZE; ++i )
 		tab[ i ] = rand() % 1000;
 
 	sorts.push_back( new BubbleSort( tab ) );
-	sorts.push_back( new HalfSort( tab ) );
-	sorts.push_back( new InsertSort( tab ) );
 	sorts.push_back( new SelectSort( tab ) );
+	sorts.push_back( new InsertSort( tab ) );
+	sorts.push_back( new HalfSort( tab ) );
+	
 	sorts.push_back( new HeapSort( tab ) );
 	sorts.push_back( new QuickSort( tab ) );
 
 	this->status = 3;
+
+	maxSimpleSortTime = 0;
+	maxQuickSortTime = 0;
+
+	countMaxSortTime();
+	fillTimeVector();
+
 }
 
 CSortDoc::~CSortDoc()
@@ -65,7 +69,8 @@ BOOL CSortDoc::OnNewDocument()
 	// (SDI documents will reuse this document)
 	//UpdateAllViews( NULL );
 
-	countMaxSortTime();
+	
+	//fillTimeVector( maxQuickSortTime, quickSortsTimes );
 
 	return TRUE;
 }
@@ -75,6 +80,14 @@ BOOL CSortDoc::OnNewDocument()
 int CSortDoc::getSortStatus()
 {
 	return this->status;
+}
+
+std::vector<unsigned int> CSortDoc::getTimeVector()
+{
+	if( status == 3 || status == 1 )
+		return simpleSortsTimes;
+	else if( status == 2 )
+		return quickSortsTimes;
 }
 
 
@@ -108,19 +121,19 @@ void CSortDoc::OnAllSorts()
 
 void CSortDoc::countMaxSortTime()
 {
-	unsigned int sortTime;
+	unsigned int sortTime = 0;
 	for( Sorter* sort : sorts )
 	{
 		sortTime = roundMaxSortTime( sort->GetSortTime() );
 
 		if( sort->GetType() == 1 )
 		{
-			if( maxSimpleSortTime < sortTime )
-				maxSimpleSortTime = sortTime;
+			if( this->maxSimpleSortTime < sortTime )
+				this->maxSimpleSortTime = sortTime;
 		}
 		else {
-			if( maxQuickSortTime < sortTime )
-				maxQuickSortTime = sortTime;
+			if( this->maxQuickSortTime < sortTime )
+				this->maxQuickSortTime = sortTime;
 		}
 	}
 }
@@ -128,14 +141,30 @@ void CSortDoc::countMaxSortTime()
 unsigned int CSortDoc::roundMaxSortTime(unsigned int sortTime)
 {
 	int r;
+	int plus = 60;
 	if( sortTime % 20 == 0 )
-		return sortTime + 20;
+		return sortTime + plus;
 	else{
 		r = sortTime - (int)(sortTime / 20) * 20;
-		sortTime = sortTime + ( 20 - r );
+		sortTime = sortTime + ( plus - r );
 		return sortTime;
 	}
 
+}
+
+void CSortDoc::fillTimeVector()
+{
+	unsigned int temp, temp1;
+	for( int i = 0; i < SIZE_LINES; ++i )
+	{
+		temp = this->maxSimpleSortTime - ( this->maxSimpleSortTime / 20 ) * i;
+		this->simpleSortsTimes.push_back( temp );
+
+		temp1 = this->maxQuickSortTime - ( this->maxQuickSortTime / 20 ) *i;
+		this->quickSortsTimes.push_back( temp1 );
+	}
+	simpleSortsTimes.push_back( 0 );
+	quickSortsTimes.push_back( 0 );
 }
 
 

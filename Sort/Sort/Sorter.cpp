@@ -23,7 +23,8 @@ unsigned int Sorter::GetSortTime()
 		sortingTime = afterSorting - beforeSorting;
 		return sortingTime;
 	}
-	return sortingTime;
+	else
+		return sortingTime;
 }
 
 CString Sorter::GetSortName()

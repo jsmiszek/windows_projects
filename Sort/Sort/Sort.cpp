@@ -10,6 +10,7 @@
 
 #include "SortDoc.h"
 #include "SortView.h"
+#include <winapifamily.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -56,6 +57,23 @@ CSortApp theApp;
 
 BOOL CSortApp::InitInstance()
 {
+	/*
+#ifdef _DEBUG
+	if( !AllocConsole() )
+		AfxMessageBox( "Failed to create the console!", MB_ICONEXCLAMATION );
+#endif
+	return TRUE;
+
+	//	and then create the frame
+	pFrame->LoadFrame( IDR_MAINFRAME,
+		WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, NULL,
+		NULL );
+		
+	// The one and only window has been initialized, so show and update it.
+	pFrame->ShowWindow( SW_SHOW );
+	pFrame->UpdateWindow();
+	*/
+	//---------------------------------------------------
 	// InitCommonControlsEx() is required on Windows XP if an application
 	// manifest specifies use of ComCtl32.dll version 6 or later to enable
 	// visual styles.  Otherwise, any window creation will fail.

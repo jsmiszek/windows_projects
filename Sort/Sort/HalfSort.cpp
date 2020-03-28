@@ -5,7 +5,7 @@
 HalfSort::HalfSort( int* t ): Sorter(t)
 {
 	type = 1;
-	name = "Half";
+	name.LoadStringW( IDS_HALF_SORT );
 }
 
 

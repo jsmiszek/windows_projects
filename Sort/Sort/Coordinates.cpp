@@ -37,15 +37,10 @@ CCoordinates::~CCoordinates()
 
 void CCoordinates::drawCoordinates( CDC * pDC )
 {
-	CPen* pOldPen = pDC->SelectObject( getCPen() );
-	pDC->MoveTo( this->leftTop.first, this->leftTop.second );
-	pDC->LineTo( this->leftTop.first, this->rightBottom.second );
-	pDC->LineTo( this->rightBottom.first, this->rightBottom.second );
-
 	//rysujemy kreski
 	CPen* m_pPenLines = new CPen( PS_DOT, 1, RGB( 173, 173, 133 ) );
-	pOldPen = pDC->SelectObject( m_pPenLines );
-	
+	CPen* pOldPen = pDC->SelectObject( m_pPenLines );
+
 	////////////////////////////////////////////
 	for( int i = 0; i < lines2.size() - 1; i++ )
 	{
@@ -54,6 +49,12 @@ void CCoordinates::drawCoordinates( CDC * pDC )
 	}
 	///////////////////////////////////////////////
 	pDC->SelectObject( pOldPen );
+
+	pOldPen = pDC->SelectObject( getCPen() );
+	pDC->MoveTo( this->leftTop.first, this->leftTop.second );
+	pDC->LineTo( this->leftTop.first, this->rightBottom.second );
+	pDC->LineTo( this->rightBottom.first, this->rightBottom.second );
+
 }
 
 CPen* CCoordinates::getCPen()

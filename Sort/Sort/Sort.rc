@@ -237,6 +237,7 @@ BEGIN
     IDS_HALF_SORT           "Half"
     IDS_SELECT_SORT         "Selection"
     IDS_QUICK_SORT          "Quick"
+    IDS_HEAP_SORT           "Heap"
 END
 
 STRINGTABLE

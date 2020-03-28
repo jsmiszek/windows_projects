@@ -23,7 +23,7 @@
 #define START 120
 #define START_COORD 80
 
-#define SIZE_LINES 20
+
 
 static COLORREF colors[] = { BLUE, PINK, GREEN, PEACH, PURPLE, YELLOW };
 
@@ -72,10 +72,8 @@ private:
 
 private:
 	void drawPlot(CDC* pDC);
-	void drawRectangle(CDC* pDC, int num);
-private:
-	void drawSorts( CDC* pDC, CSortDoc* pDoc );
-	void drawTime(CDC* pDC, CSortDoc* pDoc );
+	void drawSorts(CDC* pDC, CSortDoc* pDoc);
+	void drawScale(CDC* pDC, CSortDoc* pDoc );
 
 };
 

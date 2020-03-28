@@ -1,5 +1,6 @@
 #pragma once
-#define TAB_SIZE 15000
+#define TAB_SIZE 50000
+#include "Resource.h"
 
 class Sorter
 {

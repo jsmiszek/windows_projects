@@ -1,4 +1,4 @@
-
+#pragma once
 // SortDoc.h : interface of the CSortDoc class
 //
 
@@ -10,7 +10,9 @@
 #include "QuickSort.h"
 #include "SelectSort.h"
 
-#pragma once
+
+
+#define SIZE_LINES 20
 
 
 class CSortDoc : public CDocument
@@ -58,12 +60,17 @@ private:
 	int status; //1- proste, 2-szybkie, 3-all
 	unsigned int maxSimpleSortTime;
 	unsigned int maxQuickSortTime;
+	std::vector<unsigned int> simpleSortsTimes;
+	std::vector<unsigned int> quickSortsTimes;
 public:
 	std::vector<Sorter *> sorts;
 
 public:
 	int getSortStatus();
+	std::vector<unsigned int> getTimeVector();
 	unsigned int getMaxSortTime();
+private:
+	void fillTimeVector();
 	afx_msg void OnSimpleSorts();
 	afx_msg void OnQuickSorts();
 	afx_msg void OnAllSorts();

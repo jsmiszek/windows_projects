@@ -9,6 +9,7 @@
 #define IDS_HALF_SORT                   103
 #define IDS_SELECT_SORT                 104
 #define IDS_QUICK_SORT                  105
+#define IDS_HEAP_SORT                   106
 #define IDR_MAINFRAME                   128
 #define IDR_SortTYPE                    130
 #define ID_PROSTE                       32771

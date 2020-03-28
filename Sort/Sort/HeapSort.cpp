@@ -5,7 +5,7 @@
 HeapSort::HeapSort( int *t ): Sorter(t)
 {
 	type = 2;
-	name = "Heap";
+	name.LoadStringW( IDS_HEAP_SORT );
 }
 
 
