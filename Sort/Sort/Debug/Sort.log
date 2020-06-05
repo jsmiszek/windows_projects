@@ -1,0 +1,39 @@
+﻿  stdafx.cpp
+  SortView.cpp
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(151): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(156): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(213): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(215): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(242): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(172): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(135): note: see reference to function template instantiation 'std::pair<int,int>::pair<int,double,void,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=int,
+              _Other2=double
+          ]
+  c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortview.cpp(135): note: see reference to function template instantiation 'std::pair<int,int>::pair<int,double,void,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=int,
+              _Other2=double
+          ]
+  Sorter.cpp
+  SortDoc.cpp
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortdoc.cpp(35): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Sort.cpp
+  SelectSort.cpp
+  QuickSort.cpp
+  MainFrm.cpp
+  InsertSort.cpp
+  HeapSort.cpp
+  HalfSort.cpp
+  Coordinates.cpp
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\coordinates.cpp(21): warning C4018: '<': signed/unsigned mismatch
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\coordinates.cpp(45): warning C4018: '<': signed/unsigned mismatch
+  ColorRect.cpp
+  BubbleSort.cpp
+  Generating Code...
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\sort\sort\sortdoc.cpp(91): warning C4715: 'CSortDoc::getTimeVector': not all control paths return a value
+  Sort.vcxproj -> C:\Users\JusMat\Desktop\studia\semestr_6\win\windows_projects\Sort\Debug\Sort.exe
+  Sort.vcxproj -> C:\Users\JusMat\Desktop\studia\semestr_6\win\windows_projects\Sort\Debug\Sort.pdb (Partial PDB)

@@ -1,0 +1,10 @@
+﻿  stdafx.cpp
+  MainFrm.cpp
+  KulkiView.cpp
+c:\users\jusmat\desktop\studia\semestr_6\win\windows_projects\kulki\kulki\kulkiview.cpp(54): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  KulkiDoc.cpp
+  Kulki.cpp
+  Ball.cpp
+  Generating Code...
+  Kulki.vcxproj -> C:\Users\JusMat\Desktop\studia\semestr_6\win\windows_projects\Kulki\Debug\Kulki.exe
+  Kulki.vcxproj -> C:\Users\JusMat\Desktop\studia\semestr_6\win\windows_projects\Kulki\Debug\Kulki.pdb (Partial PDB)
